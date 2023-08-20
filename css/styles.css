@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Kanit', sans-serif; /* font-family: 'Amita', cursive; /* font-family: Arial, sans-serif; */
+    background-color: #1f1f36; /* Replace with the desired color code */
+}
+
+ /* unvisited link */
+ a:link {
+    color: white;
+  }
+  
+  /* visited link */
+  a:visited {
+    color: white;
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: hotpink;
+  }
+  
+  /* selected link */
+  a:active {
+    color: rgb(255, 105, 210);
+  } 
+
+
+.image-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh; /* Set the height to control the scrolling area */
+    overflow: hidden;
+}
+
+.image-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1; /* Start with images hidden */
+    /* transition: opacity 0.5s ease; */
+    z-index: 1; /* Increase this value for each subsequent layer */
+}
+
+.image-layer img {
+    width: 100%;
+    height: 100%; /*height: auto;*/
+    object-fit: cover;
+    object-position: center bottom;
+}
+
+.text-overlay {
+    position: absolute;
+    bottom: calc(20% + (50% - 50vh)); /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
+  }
+  
+  .text-overlay h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+  
+  .text-overlay p {
+    font-size: 18px;
+  }
+
+
