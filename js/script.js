@@ -94,14 +94,22 @@ document.addEventListener('touchstart', event => {
 	startY = event.touches[0].clientY;
 });
 
+function delayedScrollActivation(index) {
+	setTimeout(function() {
+	  scrollActivated();
+	  if (index < 99) {
+		delayedScrollActivation(index + 1);
+	  }
+	}, 10); // Adjust the delay time as needed (in milliseconds)
+  }
+
 document.addEventListener('touchmove', event => {
 	if (startY !== undefined) {
 		const deltaY = event.touches[0].clientY - startY;
     
-		if (Math.abs(deltaY) > 2) {
-			scrollActivated()
+		if (Math.abs(deltaY) > 0) {
+			delayedScrollActivation(1)
 		}
-		
 		startY = undefined;
 	}
 });
