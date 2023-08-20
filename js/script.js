@@ -61,22 +61,12 @@ function updateExistingImage() {
 
 }
 
-
-document.addEventListener('wheel', event => {
+function scrollActivated() {
 	let lastIndex = currentIndex
-
-	//console.log(event.deltaY)
-	if (event.deltaY > 0) {
-		currentIndex++
-    } else {
-		//currentIndex--
-	}
+	currentIndex++
 
 	let lastImage = Math.floor(lastIndex / 100)
 	let currentImage = Math.floor(currentIndex / 100) // + 1
-
-	//console.log(currentIndex)
-	//console.log(currentImage == lastImage)
 
 	if (lastImage !== currentImage) {
 		addNewImage(currentImage)
@@ -85,5 +75,33 @@ document.addEventListener('wheel', event => {
 			return
 		}
 		updateExistingImage()
+	}
+}
+
+// PC Support
+document.addEventListener('wheel', event => {
+	//console.log(event.deltaY)
+	if (event.deltaY > 0) {
+		scrollActivated()
+    } else {
+		//currentIndex--
+	}
+});
+
+let startY; // Mobile Support
+
+document.addEventListener('touchstart', event => {
+	startY = event.touches[0].clientY;
+});
+
+document.addEventListener('touchmove', event => {
+	if (startY !== undefined) {
+		const deltaY = event.touches[0].clientY - startY;
+    
+		if (Math.abs(deltaY) > 2) {
+			scrollActivated()
+		}
+		
+		startY = undefined;
 	}
 });
